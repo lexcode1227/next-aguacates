@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 const CartItems = () => {
   const avosCartList = useSelector((state) => state.cart.avocadoCart);
   const dispatch = useDispatch();
-  const handleRemoveFromCart = (id) => {
-      dispatch(removeAvo(id));
+  const handleRemoveFromCart = (id, price) => {
+      dispatch(removeAvo({id, price}));
     };
 
   return (
@@ -21,7 +21,7 @@ const CartItems = () => {
             <div>
               <div className='flex justify-between w-full'>
                 <h2 className='text-[#4183c4] text-[20px] font-bold'><Link href={`/product/${id}`} >{name}</Link></h2>
-                <button className='p-1' onClick={()=> handleRemoveFromCart(id) }>
+                <button className='p-1' onClick={()=> handleRemoveFromCart(id, price) }>
                   <CloseOutlined style={{color: "#4183c4"}}/>
                 </button>
               </div>

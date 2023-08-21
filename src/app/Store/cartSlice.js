@@ -5,6 +5,7 @@ const initialState = {
     avocadoList: [],
     avocadoCart: [],
     avocadoCartCount: 0,
+    total: 0,
     loading: true,
 }
 
@@ -37,9 +38,13 @@ const cartSlice = createSlice({
                 state.avocadoCart.push({ avocado, quantity });
                 state.avocadoCartCount += quantity; 
             }
+            const subtotal = (avocado.price * quantity).toFixed(2);
+            state.total += Number(subtotal);
         },
         removeAvo: (state, action)=> {
-            const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === action.payload);
+            const { id, price } = action.payload;
+            // const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === action.payload);
+            const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === id);
             if (avoRemoved.quantity > 1) {
                 state.avocadoCartCount = state.avocadoCartCount-1;
                 avoRemoved.quantity = avoRemoved.quantity-1;
@@ -47,6 +52,7 @@ const cartSlice = createSlice({
                 state.avocadoCart = state.avocadoCart.filter((item)=> item.avocado.id !== action.payload);
                 state.avocadoCartCount = state.avocadoCartCount-1;
             }
+            state.total -= avoRemoved.quantity * price;
         },
         clearCart: (state)=> {
             state.avocadoCart = [];

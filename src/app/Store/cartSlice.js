@@ -4,6 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
     avocadoList: [],
     avocadoCart: [],
+    avocadoCartCount: 0,
     loading: true,
 }
 
@@ -26,7 +27,16 @@ const cartSlice = createSlice({
             state.avocadoList = action.payload;
         },
         addAvo: (state, action) => {
-            state.avocadoCart.push(action.payload)
+            const { avocado, quantity } = action.payload;
+            // Verificar si ya existe el avo 
+            const existingAvo = state.avocadoCart.find(item => item.avocado.id === avocado.id);
+            if (existingAvo) {
+                existingAvo.quantity += quantity;
+                state.avocadoCartCount = existingAvo.quantity; 
+            } else {
+                state.avocadoCart.push({ avocado, quantity });
+                state.avocadoCartCount += quantity; 
+            }
         },
         removeAvo: (state, action)=> {
             state.avocadoCart = state.avocadoCart.filter((item)=> item.id !== action.payload)

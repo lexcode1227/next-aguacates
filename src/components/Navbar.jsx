@@ -6,7 +6,7 @@ import Basket from './SVGIcons/Basket'
 import { useSelector } from 'react-redux'
 
 const Navbar = () => {
-  const cartItemsCount = useSelector((state) => state.cart.avocadoCart.length);
+  const cartCount = useSelector((state) => state.cart.avocadoCartCount);
   return (
     <header className='flex justify-center mb-3.5 h-16 border-b border-solid shadow-[#22242626] shadow-sm'>
       <nav className='flex justify-between w-full sm:max-w-2xl'> 
@@ -20,8 +20,7 @@ const Navbar = () => {
             <Link href="/cart" >
               <menu className='flex gap-2 justify-center items-center' title="Carrito de compras">
                 <Basket/>
-                Canasta:
-                {cartItemsCount}
+                Canasta: {cartCount}
               </menu> 
             </Link>
         </menu>

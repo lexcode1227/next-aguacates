@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Subtotal = ({totalAmount}) => {
+const Subtotal = () => {
+  const totalAmount = useSelector((state) => state.cart.avocadoCartCount);
   return (
     <section className='flex items-center justify-between mt-3.5 p-4 border border-solid rounded '>
         <span><strong>Subtotal: </strong>{`${totalAmount}`}</span>

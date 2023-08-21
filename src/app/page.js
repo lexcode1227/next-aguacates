@@ -1,24 +1,19 @@
 'use client'
 import ProductList from "@/components/ProductList";
 import Avocado from "@/components/SVGIcons/Avocado";
-import { Col, Spin } from 'antd'
-import { useEffect, useState } from "react";
+import { Col, Spin } from 'antd';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAvocados } from "./Store/cartSlice";
 
 const Home = () => {
-  const [productList, setProductList] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const productList = useSelector((state) => state.cart.avocadoList);
+  const loading = useSelector((state) => state.cart.loading);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetch("https://platzi-avo.vercel.app/api/avo")
-      .then((res) => res.json())
-      .then(({ data }) => {
-        setProductList(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  useEffect(()=>{
+    dispatch(fetchAvocados()) 
+  },[])
 
   return (
     <main className="h-full mt-3.5">

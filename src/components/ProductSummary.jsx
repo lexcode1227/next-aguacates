@@ -1,6 +1,13 @@
+import { addAvo } from '@/app/Store/cartSlice'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 const ProductSummary = ({avo}) => {
+    const dispatch = useDispatch()
+    const handleAddToCart = (avocado) => {
+        dispatch(addAvo(avocado));
+      };
+      
   return (
     <section className='w-full sm:max-w-[700px] mb-6'>
         <div className='flex justify-between flex-col sm:flex-row items-center'>
@@ -13,7 +20,7 @@ const ProductSummary = ({avo}) => {
                 </div>
                 <div className='max-w-[340px] mt-2 h-11 flex items-center'>
                     <input className='py-[9px] px-4 w-3/5 border border-solid border-[#22242626] border-r-0 rounded rounded-r-none' placeholder='quantity' min="1" step="1" type='number' />
-                    <button className='py-2.5 w-2/5 rounded rounded-l-none bg-[#21ba45] text-white' onClick={()=>(alert("Add to Cart"))}>
+                    <button className='py-2.5 w-2/5 rounded rounded-l-none bg-[#21ba45] text-white' onClick={()=>handleAddToCart(avo)}>
                         Add to Cart
                     </button>
                 </div>

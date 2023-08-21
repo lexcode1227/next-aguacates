@@ -39,10 +39,17 @@ const cartSlice = createSlice({
             }
         },
         removeAvo: (state, action)=> {
-            state.avocadoCart = state.avocadoCart.filter((item)=> item.id !== action.payload)
+            const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === action.payload);
+            if (avoRemoved.quantity > 1) {
+                state.avocadoCartCount = state.avocadoCartCount-1;
+                avoRemoved.quantity = avoRemoved.quantity-1;
+            } else {
+                state.avocadoCart = state.avocadoCart.filter((item)=> item.avocado.id !== action.payload);
+                state.avocadoCartCount = state.avocadoCartCount-1;
+            }
         },
         clearCart: (state)=> {
-            return []
+            state.avocadoCart = [];
         },
         setLoading: (state, action) => {
             state.loading = action.payload;

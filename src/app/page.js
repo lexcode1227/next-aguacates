@@ -26,7 +26,7 @@ const Home = () => {
       {loading ? 
         <Col className="text-center"> <Spin spinning size='large'/> </Col> 
       : 
-        <ProductList products={productList} />}
+        <ProductList/>}
       
     </main>
   );

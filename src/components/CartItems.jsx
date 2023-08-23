@@ -1,6 +1,7 @@
 import { removeAvo } from '@/app/Store/cartSlice';
 import {CloseOutlined} from '@ant-design/icons';
-import {Image, Link} from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 

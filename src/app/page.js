@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAvocados } from "./Store/cartSlice";
 
 const Home = () => {
-  const productList = useSelector((state) => state.cart.avocadoList);
   const loading = useSelector((state) => state.cart.loading);
   const dispatch = useDispatch();
 

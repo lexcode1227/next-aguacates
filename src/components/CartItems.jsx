@@ -1,6 +1,6 @@
 import { removeAvo } from '@/app/Store/cartSlice';
 import {CloseOutlined} from '@ant-design/icons';
-import Link from 'next/link';
+import {Image, Link} from 'next';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,7 +17,7 @@ const CartItems = () => {
         const {name, id, price, image} = avocado;
         return (
           <div className='flex flex-col sm:flex-row items-center justify-start gap-4 max-w-[700px]' key={id}>
-            <img src={`https://platzi-avo.vercel.app${image}`} alt={name} width={150} height={150} />
+            <Image src={`https://platzi-avo.vercel.app${image}`} alt={name} width={150} height={150} />
             <div>
               <div className='flex justify-between w-full'>
                 <h2 className='text-[#4183c4] text-[20px] font-bold'><Link href={`/product/${id}`} >{name}</Link></h2>

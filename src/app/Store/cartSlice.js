@@ -43,19 +43,22 @@ const cartSlice = createSlice({
         },
         removeAvo: (state, action)=> {
             const { id, price } = action.payload;
-            // const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === action.payload);
             const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === id);
             if (avoRemoved.quantity > 1) {
-                state.avocadoCartCount = state.avocadoCartCount-1;
-                avoRemoved.quantity = avoRemoved.quantity-1;
+                state.avocadoCartCount = state.avocadoCartCount - 1;
+                avoRemoved.quantity = avoRemoved.quantity - 1;
+                state.total -= price;
             } else {
-                state.avocadoCart = state.avocadoCart.filter((item)=> item.avocado.id !== action.payload);
-                state.avocadoCartCount = state.avocadoCartCount-1;
+                state.avocadoCart = state.avocadoCart.filter((item)=> item.avocado.id !== id);
+                state.avocadoCartCount = state.avocadoCartCount - 1;
+                const subtotal = (avoRemoved.quantity * price).toFixed(2); 
+                state.total -= subtotal;
             }
-            state.total -= avoRemoved.quantity * price;
         },
         clearCart: (state)=> {
             state.avocadoCart = [];
+            state.avocadoCartCount = 0;
+            state.total = 0;
         },
         setLoading: (state, action) => {
             state.loading = action.payload;

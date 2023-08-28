@@ -7,12 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAvocados } from "./Store/cartSlice";
 
 const Home = () => {
+  const avocados = useSelector((state) => state.cart.avocadoList);
   const loading = useSelector((state) => state.cart.loading);
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatch(fetchAvocados()) 
-  },[])
+    if (avocados.length === 0) {
+      dispatch(fetchAvocados());
+    }
+  }, [dispatch, avocados]);
 
   return (
     <main className="h-full mt-3.5">

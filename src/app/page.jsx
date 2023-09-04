@@ -20,9 +20,9 @@ const Home = () => {
   return (
     <main className="h-full mt-3.5">
       <div className="flex justify-center text-center mt-7 mb-7 ">
-        <h1 className="text-4xl">Platzi</h1>
+        <h1 className="text-4xl">Avo</h1>
         <Avocado size="58px"/>
-        <h2 className="text-4xl"> Avo</h2>
+        <h2 className="text-4xl"> Store</h2>
       </div>
       <h3 className="text-base text-blue-700 w-full text-center mb-7">¿Deberia comer un avo hoy?</h3>
       {loading ? 

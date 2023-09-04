@@ -10,7 +10,7 @@ const ProductItem = ({ params }) => {
   const loading = useSelector((state) => state.cart.loading);
 
   return (
-    loading ? 
+    (loading || !avo ) ? 
     <Col className="text-center"> <Spin spinning size='large'/> </Col> 
     : 
     <Item avo={avo} />

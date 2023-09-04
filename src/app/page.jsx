@@ -7,13 +7,14 @@ import { fetchAvocados } from "./Store/cartSlice";
 import { useEffect } from "react";
 
 const Home = () => {
+  const avocados = useSelector((state) => state.cart.avocadoList);
   const loading = useSelector((state) => state.cart.loading);
   const dispatch = useDispatch();
 
   useEffect(()=>{
     dispatch(fetchAvocados()) 
   },[])
-  
+
   return (
     <main className="h-full mt-3.5">
       <div className="flex justify-center text-center mt-7 mb-7 ">

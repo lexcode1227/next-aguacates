@@ -6,14 +6,13 @@ import { Col, Spin } from 'antd'
 
 const ProductItem = ({ params }) => {
   const id = params.id;
-  const avo = useSelector((state)=> state.cart.avocadoList.find(item => item.avocado.id === id));
   const loading = useSelector((state) => state.cart.loading);
 
   return (
     loading ? 
     <Col className="text-center"> <Spin spinning size='large'/> </Col> 
     : 
-    <Item avo={avo} />
+    <Item id={id} />
   )
 }
 

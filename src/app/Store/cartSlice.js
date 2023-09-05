@@ -38,22 +38,19 @@ const cartSlice = createSlice({
                 state.avocadoCart.push({ avocado, quantity });
                 state.avocadoCartCount += quantity; 
             }
-            const subtotal = (avocado.price * quantity).toFixed(2);
-            state.total += Number(subtotal);
+            const subtotal = (Number(avocado.price) * quantity);
+            state.total += subtotal;
         },
         removeAvo: (state, action)=> {
             const { id, price } = action.payload;
             const avoRemoved = state.avocadoCart.find((item)=> item.avocado.id === id);
             if (avoRemoved.quantity > 1) {
-                state.avocadoCartCount = state.avocadoCartCount - 1;
                 avoRemoved.quantity = avoRemoved.quantity - 1;
-                state.total -= price;
             } else {
                 state.avocadoCart = state.avocadoCart.filter((item)=> item.avocado.id !== id);
-                state.avocadoCartCount = state.avocadoCartCount - 1;
-                const subtotal = (avoRemoved.quantity * price).toFixed(2); 
-                state.total -= subtotal;
             }
+            (state.total -= Number(price));
+            state.avocadoCartCount = state.avocadoCartCount - 1;
         },
         clearCart: (state)=> {
             state.avocadoCart = [];

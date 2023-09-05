@@ -7,7 +7,6 @@ import { fetchAvocados } from "./Store/cartSlice";
 import { useEffect } from "react";
 
 const Home = () => {
-  const avocados = useSelector((state) => state.cart.avocadoList);
   const loading = useSelector((state) => state.cart.loading);
   const dispatch = useDispatch();
 

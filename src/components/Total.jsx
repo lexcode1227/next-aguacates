@@ -1,6 +1,7 @@
 import { clearCart } from '@/app/Store/cartSlice';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import EmptyCart from './EmptyCart';
 
 const Total = () => {
   const totalAmount = useSelector((state) => state.cart.avocadoCartCount);
@@ -10,11 +11,14 @@ const Total = () => {
   const handleClearCart = ()=> {
     dispatch(clearCart())
   }
+  if(totalAmount == 0){
+    dispatch(clearCart())
+  }
   return (
     <section className='flex items-center justify-between mt-3.5 p-4 border border-solid rounded '>
         <div className='flex flex-col items-start'>
-          <span><strong>Cantidad: </strong>{`${totalAmount}`}</span>
-          <span><strong>Total: </strong>{`$${totalMoney}`}</span>
+          <span><strong>Cantidad: </strong>{totalAmount}</span>
+          <span><strong>Total: </strong>$ {(totalMoney).toFixed(2)} </span>
         </div>
         <div className='flex gap-5 justify-center'>
           <button disabled={cartIsEmpty} onClick={()=> handleClearCart() }>Limpiar</button>

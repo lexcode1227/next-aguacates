@@ -6,15 +6,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const CartItems = () => {
-  const avosCartList = useSelector((state) => state.cart.avocadoCart);
+  const avocadoList = useSelector((state) => state.cart.avocadoCart);
   const dispatch = useDispatch();
   const handleRemoveFromCart = (id, price) => {
-      dispatch(removeAvo({id, price}));
+      dispatch(removeAvo({id, price }));
     };
 
   return (
     <section>
-      {avosCartList.map(({avocado, quantity}) => {
+      {avocadoList.map(({avocado, quantity}) => {
         const {name, id, price, image} = avocado;
         return (
           <div className='flex flex-col sm:flex-row items-center justify-start gap-4 max-w-[700px]' key={id}>

@@ -8,7 +8,7 @@ const ProductSummary = ({avo}) => {
     const handleAddToCart = (avocado, quantity) => {
         dispatch(addAvo({avocado, quantity}));
       };
-      
+
   return (
     <section className='w-full sm:max-w-[700px] mb-6'>
         <div className='flex justify-between flex-col sm:flex-row items-center'>
